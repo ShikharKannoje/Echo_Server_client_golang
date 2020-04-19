@@ -30,7 +30,7 @@ func handleConn(c net.Conn) {
 	defer c.Close()
 	input := bufio.NewScanner(c)
 	for input.Scan() {
-		echo(c, input.Text(), 1*time.Second)
+		go echo(c, input.Text(), 1*time.Second) // creating goroutines here
 	}
 	c.Close()
 }
